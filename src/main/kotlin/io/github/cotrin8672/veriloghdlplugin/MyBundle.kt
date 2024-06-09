@@ -1,4 +1,4 @@
-package com.github.cotrin8672.veriloghdlplugin
+package io.github.cotrin8672.veriloghdlplugin
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.NonNls

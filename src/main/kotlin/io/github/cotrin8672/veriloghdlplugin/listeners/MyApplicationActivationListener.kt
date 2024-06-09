@@ -1,4 +1,4 @@
-package com.github.cotrin8672.veriloghdlplugin.listeners
+package io.github.cotrin8672.veriloghdlplugin.listeners
 
 import com.intellij.openapi.application.ApplicationActivationListener
 import com.intellij.openapi.diagnostic.thisLogger

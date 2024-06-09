@@ -1,7 +1,7 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.cotrin8672.veriloghdlplugin</id>
-    <name>verilog-hdl-plugin</name>
+    <name>Verilog Hdl</name>
     <vendor>cotrin8672</vendor>
 
     <depends>com.intellij.modules.platform</depends>
@@ -9,10 +9,31 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.cotrin8672.veriloghdlplugin.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
+        <toolWindow
+                factoryClass="io.github.cotrin8672.veriloghdlplugin.toolWindow.MyToolWindowFactory"
+                id="MyToolWindow"
+        />
+        <fileType
+                name="Verilog File"
+                implementationClass="io.github.cotrin8672.veriloghdlplugin.language.file.VerilogFileType"
+                fieldName="INSTANCE"
+                language="Verilog"
+                extensions="v"
+        />
+        <lang.parserDefinition
+                language="Verilog"
+                implementationClass="io.github.cotrin8672.veriloghdlplugin.language.VerilogParserDefinition"
+        />
+        <lang.syntaxHighlighterFactory
+                language="Verilog"
+                implementationClass="io.github.cotrin8672.veriloghdlplugin.language.VerilogSyntaxHighlighterFactory"
+        />
     </extensions>
 
     <applicationListeners>
-        <listener class="com.github.cotrin8672.veriloghdlplugin.listeners.MyApplicationActivationListener" topic="com.intellij.openapi.application.ApplicationActivationListener"/>
+        <listener
+                class="io.github.cotrin8672.veriloghdlplugin.listeners.MyApplicationActivationListener"
+                topic="com.intellij.openapi.application.ApplicationActivationListener"
+        />
     </applicationListeners>
 </idea-plugin>

@@ -1,0 +1,50 @@
+{
+    parserClass = "io.github.cotrin8672.veriloghdlplugin.language.parser.VerilogParser"
+
+    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix = "Verilog"
+    psiImplClassSuffix = "Impl"
+    psiPackage = "io.github.cotrin8672.veriloghdlplugin.language.psi.impl"
+
+    elementTypeHolderClass = "io.github.cotrin8672.veriloghdlplugin.language.psi.VerilogTypes"
+    elementTypeClass = "io.github.cotrin8672.veriloghdlplugin.language.psi.VerilogElementType"
+    tokenTypeClass = "io.github.cotrin8672.veriloghdlplugin.language.psi.VerilogTokenType"
+
+    tokens=[
+        SPACE = "regexp:[\s\n\r\t\f]+"
+        LINE_COMMENT = "regexp://[^-\n]*"
+        BLOCK_COMMENT = "regexp:/\*[\s\S]*?\*/|//.*"
+        STRING_LITERAL = "regexp:\"([^\"\\]|\\.)*\""
+        IDENTIFIER = "regexp:[a-zA-Z_\\][a-zA-Z0-9_$]*\s*"
+        COMMA = ","
+        SEMI = ";"
+        EQUALS = "="
+        LPAREN = "("
+        RPAREN = ")"
+        ASSIGN = "assign"
+        AMPERSAND = "&"
+        CARET = "^"
+        MODULE = "module"
+        ENDMODULE = "endmodule"
+        INPUT = "input"
+        OUTPUT = "output"
+    ]
+}
+
+verilogFile ::= moduleDeclaration*
+
+private moduleDeclaration ::= MODULE IDENTIFIER LPAREN parameterList RPAREN SEMI moduleContent* ENDMODULE
+
+private parameterList ::= parameterDeclaration (COMMA parameterDeclaration)*
+
+private parameterDeclaration ::= inputDeclaration | outputDeclaration
+
+private inputDeclaration ::= INPUT WIRE IDENTIFIER
+private outputDeclaration ::= OUTPUT (WIRE | REG) IDENTIFIER
+
+moduleContent ::= assignDeclaration SEMI
+
+private assignDeclaration ::= ASSIGN IDENTIFIER EQUALS IDENTIFIER operator IDENTIFIER
+
+operator ::= AMPERSAND | CARET

@@ -1,9 +1,9 @@
-package com.github.cotrin8672.veriloghdlplugin.services
+package io.github.cotrin8672.veriloghdlplugin.services
 
 import com.intellij.openapi.components.Service
 import com.intellij.openapi.diagnostic.thisLogger
 import com.intellij.openapi.project.Project
-import com.github.cotrin8672.veriloghdlplugin.MyBundle
+import io.github.cotrin8672.veriloghdlplugin.MyBundle
 
 @Service(Service.Level.PROJECT)
 class MyProjectService(project: Project) {
